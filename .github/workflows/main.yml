@@ -17,8 +17,22 @@ jobs:
           mdbook-version: '0.3.7'
 
       - run: mdbook build
+
+      # Chinese version of the book
       - run: mdbook build translations/cn
       - run: mv translations/cn/book book/cn
+
+      # Korean translation
+      - run: mdbook build translations/ko
+      - run: mv translations/ko/book book/ko
+
+      # Turkish version of the book
+      - run: mdbook build translations/tr
+      - run: mv translations/tr/book book/tr
+
+      # Russian version of the book
+      - run: mdbook build translations/ru
+      - run: mv translations/ru/book book/ru
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -26,6 +40,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book
           cname: move-book.com
-
-
-

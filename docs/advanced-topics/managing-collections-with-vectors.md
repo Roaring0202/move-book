@@ -1,8 +1,8 @@
 # Managing collections with Vector
 
-You're already familiar with `struct` type which gives you ability to create your own types and to store complex data. But sometimes you need something more dynamic, extensible and manageable. And for that Move has Vectors.
+You're already familiar with the `struct` type which gives you the ability to create your own types and to store complex data. But sometimes you need something more dynamic, extensible and manageable. And for that Move has Vectors.
 
-Vector is a built-in type for storing *collections* of data. It is a generic solution for collection of any type (but only one). As its functionality is given to you by VM - not by actual Move language, the only way to work with it is by using standard library and `native` functions.
+Vector is a built-in type for storing *collections* of data. It is a generic solution for collection of any type (but only one). As its functionality is given to you by the VM; the only way to work with it is by using the [Move standard library](https://github.com/diem/move/tree/main/language/move-stdlib/sources) and `native` functions.
 
 ```Move
 script {
@@ -10,14 +10,14 @@ script {
 
     fun main() {
         // use generics to create an emtpy vector
-        let a = Vector::empty<&u8>();
+        let a = Vector::empty<u8>();
         let i = 0;
 
         // let's fill it with data
         while (i < 10) {
             Vector::push_back(&mut a, i);
             i = i + 1;
-        }
+        };
 
         // now print vector length
         let a_len = Vector::length(&a);
@@ -139,7 +139,7 @@ script {
 }
 ```
 
-Simpler approach (which [has become possible recently](https://github.com/diem/diem/pull/4058)) is to use bytestring literals:
+Simpler approach is to use bytestring literals:
 
 ```Move
 script {
@@ -177,7 +177,4 @@ Vector::borrow_mut<E>(v: &mut vector<E>, i: u64): &E;
 Vector::pop_back<E>(v: &mut vector<E>): E;
 ```
 
-Vector module in standard libraries:
-
-- Diem [diem/diem](https://github.com/diem/diem/blob/master/language/diem-framework/modules/Vector.move)
-- Starcoin [starcoinorg/starcoin](https://github.com/starcoinorg/starcoin/blob/master/vm/stdlib/modules/Vector.move)
+Vector module in the Move standard library: [link](https://github.com/diem/move/blob/main/language/move-stdlib/sources/Vector.move)
